@@ -6,9 +6,14 @@ import GoalInput from "./components/GoalInput";
 
 export default function App() {
   const [goals, setGoals] = useState([]);
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
   const addGoalHandler = (newGoal) => {
     setGoals((currentGoals) => [...currentGoals, newGoal]);
+  };
+
+  const toggleModalHandler = () => {
+    setModalIsVisible((prev) => !prev);
   };
 
   const deleteGoalHandler = (currentIndex) => {
@@ -20,7 +25,12 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.listHeader}>Goal Tracker</Text>
-      <GoalInput onAddGoalPress={addGoalHandler} />
+      <Button title="Add New Goal" onPress={toggleModalHandler} />
+      <GoalInput
+        onAddGoalPress={addGoalHandler}
+        modalIsVisible={modalIsVisible}
+        onModalCancel={toggleModalHandler}
+      />
 
       <View
         style={{
