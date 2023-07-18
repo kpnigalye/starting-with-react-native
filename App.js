@@ -11,6 +11,12 @@ export default function App() {
     setGoals((currentGoals) => [...currentGoals, newGoal]);
   };
 
+  const deleteGoalHandler = (currentIndex) => {
+    let goalsToUpdate = [...goals];
+    goalsToUpdate.splice(currentIndex, 1);
+    setGoals(goalsToUpdate);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.listHeader}>Goal Tracker</Text>
@@ -33,6 +39,7 @@ export default function App() {
               <GoalItem
                 itemIndex={itemData.index}
                 itemText={itemData.item.text}
+                onGoalPress={deleteGoalHandler}
               />
             );
           }}

@@ -9,13 +9,16 @@ function GoalInput({ onAddGoalPress }) {
   };
 
   const addGoalHandler = () => {
-    onAddGoalPress(newGoal);
-    setNewGoal("");
+    if(newGoal){
+      onAddGoalPress(newGoal);
+      setNewGoal("");
+    }
   };
 
   return (
     <View style={styles.inputContainer}>
       <TextInput
+        value={newGoal}
         placeholder="Your next goAl.."
         style={styles.textInput}
         onChangeText={inputChangeHandler}
